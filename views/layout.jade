@@ -1,0 +1,65 @@
+html
+  head
+    block head
+      if (typeof post !== "undefined")
+        title= post.title
+      else
+        title= title
+      meta(charset="utf-8")
+      meta(name="viewport",content="width=device-width, initial-scale=1.0")
+      script(src="/ckeditor/ckeditor.js")
+      script(src="/javascript/jquery-1.8.3.min.js")
+      script(src="/javascript/bootstrap.min.js")
+      link(href=bootstrapPath, rel="stylesheet")
+      link(href="/stylesheets/bootstrap-responsive.min.css", rel="stylesheet")
+      link(href="/stylesheets/style.css", rel="stylesheet")
+      style
+        body {
+          padding-top: 60px;
+        }
+
+        @media (max-width: 979px) {
+          body {
+            padding-top: 0;
+          }
+        }
+
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-admin")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          .nav-collapse.collapse.nav-admin
+            ul.nav
+              li: a(href="/") home
+              if user
+                li: a(href="/blogs") my blogs
+                li: a(href="/newPost") new post
+            ul.nav.pull-right
+              if user
+                li: a(href="/account")= user.email
+                li: a(href="/logout") logout
+              else
+                li.dropdown: a(href="#", data-toggle='dropdown', data-target='#').dropdown-toggle login
+                  ul(role="menu", aria-labelledby="dLabel").dropdown-menu
+                    li: a(href='/login/google') login via google
+
+    .container-narrow
+      .navbar
+        .navbar-inner
+          a.btn.btn-navbar.public-menu(data-toggle="collapse", data-target=".nav-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          .container-fluid
+            a.brand(href="/")= title
+            .nav-collapse.collapse
+              ul.nav.pull-right
+                each item in menu
+                  li: a(href=item.path)= item.title
+      .row-fluid
+        block content
+        block postContent

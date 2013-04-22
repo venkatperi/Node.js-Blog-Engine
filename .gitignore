@@ -4,3 +4,8 @@ resources/stylesheets/style.css
 #node modules
 node_modules
 node_modules/*
+
+.idea/
+.idea/*
+app.js
+config.js

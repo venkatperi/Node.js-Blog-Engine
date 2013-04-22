@@ -1,0 +1,81 @@
+/**
+ * @module nodejs-blog-engine
+ */
+var https = require( 'https' );
+var Q = require( 'q' );
+
+var db = {};
+var agent;
+
+/**
+ * Exec a https request
+ * @param options
+ * @returns {Promise} Resolves with data or error code
+ */
+function doHttpsRequest( options ) {
+  var defer = Q.defer();
+  options.agent = options.agent || agent || (agent = new https.Agent( options ));
+
+  https.request( options,function ( res ) {
+    var data = "";
+    res.setEncoding( "utf8" );
+
+    res.on( 'data', function ( d ) {
+      data += d;
+    } );
+
+    var done = function () {
+      defer.resolve( JSON.parse( data ) );
+    };
+
+    res.on( 'end', done );
+    res.on( 'close', done );
+
+  } ).on( 'error', function ( e ) {
+        defer.reject( e );
+      } )
+      .end();
+
+  return defer.promise;
+}
+
+db.posts = {
+  /**
+   * Create a new post for the logged in user
+   * @param post
+   * @param {String} post.userid - UserID (email)
+   * @param {String} post.title - Title of the post
+   * @param {String} post.content - Post content
+   * @param {String} post.status - either 'published' or 'draft'
+   * @returns {Promise} Promise which resolves with status
+   */
+  create : function ( post ) {
+    var defer = Q.defer();
+
+    return defer.promise;
+  },
+
+  /**
+   * Find post by ID
+   * @param {String} id - Post id
+   * @returns {object} promise which resolves to the post
+   */
+  findById : function ( id ) {
+    var defer = Q.defer();
+
+    return defer.promise;
+  },
+
+  /**
+   * Find all posts by the current user
+   * @returns {object} promise which resolves to the list of posts
+   */
+  findAll : function ( ) {
+    var defer = Q.defer();
+
+    return defer.promise;
+  }
+};
+
+db.posts.sync();
+module.exports = db;
