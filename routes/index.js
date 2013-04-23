@@ -22,6 +22,7 @@ exports.set = function ( options ) {
       searchParameters.status.push( "draft" );
     }
 
+    res.render( 'index', {posts : [] } );
 //    db.Post.findAll( {order : 'createdAt DESC', where : searchParameters} ).success( function ( posts ) {
 //      res.render( 'index', {posts : formatPostPreviews( posts ), noTitleLink : false} );
 //    } );

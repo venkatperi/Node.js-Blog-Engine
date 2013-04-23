@@ -8,8 +8,7 @@ var moment = require( 'moment' );
 var GoogleStrategy = require( 'passport-google' ).Strategy;
 var Akiban = require( 'akiban-node' );
 var _ = require( 'underscore' );
-
-var UserModel = require( './models/UserModel' );
+var Models = require( './models' );
 
 fs.mkdir( 'views', function ( e ) {
   if ( !e || (e.code === 'EEXIST') ) {
@@ -42,27 +41,33 @@ exports.start = function ( options ) {
     process.env.host = options.database.host;
     process.env.dbPort = options.database.dbPort;
   }
+  Models.Factory.init( options.database );
 
-  var user = new UserModel( {connection : new Akiban.Entity( options.database ) } );
-  user.read( "1231" ).then(function ( item ) {
-    console.log( item.__data );
-    console.log( item.get( 'name' ) );
-    console.log( item.get( 'account[0].status' ) );
-    var emails = item.get( 'profile.emails' );
-    console.log( emails );
+//  console.log( util.inspect( Models.Factory.create( 'users' ), {depth : 10} ) );
+  /*
+   Models.Factory.find( 'users', Models.UserModel.queries.findByEmail( {email : 'mhashimoto@plaxo.com'} ) ).then(
+   function ( items ) {
+   _.each( items, function ( item ) {
+   console.log( util.inspect( item.__data, {depth : 10} ) );
+   console.log( item.get( 'name' ) );
+   console.log( item.get( 'account[0].status' ) );
+   var emails = item.get( 'profile.emails' );
+   console.log( emails );
 
-    return;
-    var email = _.find( emails, function ( e ) {
-      return e.value === 'ab@cde.com';
-    } );
+   return;
+   var email = _.find( emails, function ( e ) {
+   return e.value === 'ab@cde.com';
+   } );
 
-    email.primary = false;
-    //emails.push( {value : 'ab@cde.com', type : 'junk'} );
-    item.update().then(
-        function ( x ) {
-          console.log( x );
-        } ).done();
-  } ).done();
+   email.primary = false;
+   //emails.push( {value : 'ab@cde.com', type : 'junk'} );
+   Models.Factory.update( item ).then(
+   function ( x ) {
+   console.log( x );
+   } ).done();
+   } );
+   } ).done();
+   */
 
   var routes = require( './routes/index.js' );
   routes.set( options );
@@ -101,7 +106,6 @@ exports.start = function ( options ) {
     app.use( passport.initialize() );
     app.use( passport.session() );
     app.use( function ( req, res, next ) {
-      // Add user variable to every template
       res.locals.user = req.user;
       next();
     } );
@@ -119,36 +123,27 @@ exports.start = function ( options ) {
       options.liveDomain + '/auth/google/return';
   var realm = !options.useLiveDomain ? 'http://localhost:' + app.get( 'port' ) : options.liveDomain;
 
-  passport.use( new GoogleStrategy( {
-        returnURL : callbackURL,
-        realm : realm
-      },
-      function ( identifier, profile, done ) {
-        process.nextTick( function () {
-          profile.identifier = identifier;
-          return done( null, profile );
-        } );
-      }
-  ) );
+  passport.use( new GoogleStrategy( { returnURL : callbackURL, realm : realm }, require( './routes/login' ) ) );
+
   var auth = passport.authenticate( 'google', { failureRedirect : '/' } );
 
   app.get( '/', routes.index );
 
   app.get( '/login/google', auth, goHome );
-  app.get( '/auth/google/return', auth, require( './routes/login' ) );
+  app.get( '/auth/google/return', passport.authenticate( 'google', { successRedirect : '/', failureRedirect : '/' } ) );
   app.get( '/logout', logout );
 
   app.get( '/post/:title', routes.post );
-  app.get( '/newPost', ensureAdmin, routes.newPost );
+  app.get( '/newPost', ensureLogin, routes.newPost );
   app.get( '/createPost', routes.createPost );
-  app.get( '/post/:title/:mode', ensureAdmin, routes.editPost );
-  app.get( '/updatePost', ensureAdmin, routes.updatePost );
+  app.get( '/post/:title/:mode', ensureLogin, routes.editPost );
+  app.get( '/updatePost', ensureLogin, routes.updatePost );
 
   http.createServer( app ).listen( app.get( 'port' ), function () {
     console.log( 'Blog started on port ' + app.get( 'port' ) + '.' );
   } );
 
-  function ensureAdmin( req, res, next ) {
+  function ensureLogin( req, res, next ) {
     if ( req.user ) {
       next();
     }
@@ -163,4 +158,5 @@ exports.start = function ( options ) {
     } );
   }
 
-};
+}
+;

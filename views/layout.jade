@@ -40,7 +40,7 @@ html
                 li: a(href="/newPost") new post
             ul.nav.pull-right
               if user
-                li: a(href="/account")= user.email
+                li: a(href="/account")= user.__data && user.__data.name
                 li: a(href="/logout") logout
               else
                 li.dropdown: a(href="#", data-toggle='dropdown', data-target='#').dropdown-toggle login

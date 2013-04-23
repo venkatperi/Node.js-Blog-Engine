@@ -1,5 +1,8 @@
-module.exports =
-    [
+
+module.exports ;
+
+
+var old =    [
       {
         "uuid" : "2bc8e151-9a29-482b-9baa-eb36d11408fe",
         "name" : "users",
@@ -75,7 +78,7 @@ module.exports =
           },
           {
             "uuid" : "278c7b4d-d3c0-4c3a-938c-9b281589df0e",
-            "name" : "profile",
+            "name" : "profiles",
             "fields" : [
               {
                 "uuid" : "f1fd4841-a4ee-49ee-bbb4-1e743e764fb0",
