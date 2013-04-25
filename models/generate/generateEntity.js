@@ -2,72 +2,137 @@ var _ = require( 'underscore' );
 var counters = require( './../counters' );
 var fs = require( 'fs' );
 var en = require( 'lingo' ).en;
+var S = require( 'string' );
 
-function defaultVal( type ) {
-  var f;
-  switch ( type ) {
-    case 'varchar' :
-      f = function () {
-        return 'required, uninitialized';
-      };
-      break;
-    case  'integer' :
-      f = function () {
-        return _.random( 1000, 9999999 )
-      };
-      break;
-    case 'datetime' :
-      f = function () {
-        return new Date();
-      };
-      break;
-    case 'boolean' :
-      f = function () {
-        return false;
-      };
-      break;
-    default:
-      f = function () {
-        return '';
-      }
+var js = {
+  defaults : {
+    fieldsAsProperties : true, //use c# props, or overloaded functional access
+    fieldsAsBeans : false,     //use getter/setter functions exclusive with above
+    className : {
+      pascalCase : true,
+      postfix : "Model"
+    }
+  },
+
+  /**
+   * Given a DB type, return a default value - mostly for create
+   * @param {string} type
+   * @returns {*}
+   */
+  defaultVal : function ( type ) {
+    var f;
+    switch ( type ) {
+      case 'varchar' :
+        f = function () {
+          return 'required, uninitialized';
+        };
+        break;
+      case  'integer' :
+        f = function () {
+          return _.random( 1000, 9999999 )
+        };
+        break;
+      case 'datetime' :
+        f = function () {
+          return new Date();
+        };
+        break;
+      case 'boolean' :
+        f = function () {
+          return false;
+        };
+        break;
+      default:
+        f = function () {
+          return '';
+        }
+    }
+    return f();
+  },
+
+  /**
+   * Map DB types to this language's types
+   * @param {string} type the DB type
+   * @returns {string} the mapped type
+   */
+  mapType : function ( type ) {
+    switch ( type.toLowerCase() ) {
+      case 'varchar' :
+        return "String";
+
+      case 'double':
+      case 'float':
+      case 'integer':
+        return "Number";
+
+      case 'text':
+        return "String";
+
+      case 'boolean':
+        return "Boolean";
+
+      case 'date':
+      case 'datetime':
+        return "Date";
+
+      default:
+        return "Object";
+    }
+  },
+
+  /**
+   * Map a db field name to a language field name. Mostly about code style preferences
+   * @param {string} prop
+   * @returns {string}
+   */
+  fieldName : function ( prop ) {
+    return prop;
+  },
+
+  /**
+   * For the db entity, return the language class name
+   * @param entityName
+   * @param options
+   */
+  className : function ( entityName, options ) {
+    var n = entityName;
+    options = options || {};
+
+    if ( options.className.singular ) { n = en.singularize( n ); }
+
+    n = S( n );
+    if ( options.className.pascalCase ) { n = n.camelize().capitalize(); }
+    if ( options.className.camelCase ) { n = n.camelize(); }
+    if ( options.className.prefix ) { n = n.ensureLeft( options.className.prefix ); }
+    if ( options.className.postfix ) { n = n.ensureLeft( options.className.postfix ); }
+    return n.s;
+  },
+
+  getterFunction : function ( prop ) {
   }
-  return f();
-}
+};
 
-function getTypeName( type ) {
-  switch ( type.toLowerCase() ) {
-    case 'varchar' :
-      return "String";
-
-    case 'double':
-    case 'float':
-    case 'integer':
-      return "Number";
-
-    case 'text':
-      return "String";
-
-    case 'boolean':
-      return "Boolean";
-
-    case 'date':
-    case 'datetime':
-      return "Date";
-
-    default:
-      return "Object";
-  }
-}
-
-//fs.mkdirSync( "./gen" );
-//var file = fs.openSync( "./gen/" + entity.name, "w" );
+var lang = js;
 
 function toPascalCase( str ) {
   return str.substr( 0, 1 ).toUpperCase() + str.substr( 1 );
 }
 
+function fixUnderscores( str ) {
+  var s = "";
+  var len = str.length - 1;
+  for ( var i = 0; i < len; i++ ) {
+    if ( str[i] === '_' ) {
+    }
+  }
+}
+
 function cleanPascalCase( str ) {
-  return toPascalCase( str.replace( '_', '' ) );
+  return toPascalCase( str.replace( /_/g, '' ) );
+}
+
+function camelCase( str ) {
+  return toPascalCase( str.replace( /_/g, '' ) );
 }
 
 function getModelName( entity ) {
