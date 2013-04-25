@@ -41,33 +41,7 @@ exports.start = function ( options ) {
     process.env.host = options.database.host;
     process.env.dbPort = options.database.dbPort;
   }
-  Models.Factory.init( options.database );
-
-//  console.log( util.inspect( Models.Factory.create( 'users' ), {depth : 10} ) );
-  /*
-   Models.Factory.find( 'users', Models.UserModel.queries.findByEmail( {email : 'mhashimoto@plaxo.com'} ) ).then(
-   function ( items ) {
-   _.each( items, function ( item ) {
-   console.log( util.inspect( item.__data, {depth : 10} ) );
-   console.log( item.get( 'name' ) );
-   console.log( item.get( 'account[0].status' ) );
-   var emails = item.get( 'profile.emails' );
-   console.log( emails );
-
-   return;
-   var email = _.find( emails, function ( e ) {
-   return e.value === 'ab@cde.com';
-   } );
-
-   email.primary = false;
-   //emails.push( {value : 'ab@cde.com', type : 'junk'} );
-   Models.Factory.update( item ).then(
-   function ( x ) {
-   console.log( x );
-   } ).done();
-   } );
-   } ).done();
-   */
+  // Models.Factory.init( options.database );
 
   var routes = require( './routes/index.js' );
   routes.set( options );
@@ -120,7 +94,7 @@ exports.start = function ( options ) {
   } );
 
   var callbackURL = !options.useLiveDomain ? 'http://localhost:' + app.get( 'port' ) + '/auth/google/return' :
-      options.liveDomain + '/auth/google/return';
+                    options.liveDomain + '/auth/google/return';
   var realm = !options.useLiveDomain ? 'http://localhost:' + app.get( 'port' ) : options.liveDomain;
 
   passport.use( new GoogleStrategy( { returnURL : callbackURL, realm : realm }, require( './routes/login' ) ) );

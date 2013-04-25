@@ -1,5 +1,6 @@
 var _ = require( 'underscore' );
 var counters = require( './counters' );
+var fs = require( 'fs' );
 
 function defaultVal( type ) {
   var f;

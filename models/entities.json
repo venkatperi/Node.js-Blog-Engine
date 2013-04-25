@@ -1,0 +1,1165 @@
+{"entities" : [
+  {
+    "uuid" : "bc87e443-a54b-45a7-a64e-9a2ec3f0ca3b",
+    "name" : "blogs",
+    "fields" : [
+      {
+        "uuid" : "69aa7f79-a22f-4f0e-a4ab-2a057d7d3748",
+        "name" : "id",
+        "type" : "integer",
+        "validations" : [
+          {
+            "required" : true
+          },
+          {
+            "width" : 11
+          }
+        ]
+      },
+      {
+        "uuid" : "2ed907ba-929f-444b-995d-a6d8a79cc3ca",
+        "name" : "title",
+        "type" : "varchar",
+        "properties" : {
+          "charset" : "UTF8",
+          "collation" : "UCS_BINARY"
+        },
+        "validations" : [
+          {
+            "max_length" : 256
+          },
+          {
+            "required" : false
+          }
+        ]
+      },
+      {
+        "uuid" : "904ae789-be98-46f9-a31a-a1051f2a4a09",
+        "name" : "subtitle",
+        "type" : "varchar",
+        "properties" : {
+          "charset" : "UTF8",
+          "collation" : "UCS_BINARY"
+        },
+        "validations" : [
+          {
+            "max_length" : 256
+          },
+          {
+            "required" : false
+          }
+        ]
+      },
+      {
+        "uuid" : "083f71d0-3af8-4d9f-b69f-acf1780c48cf",
+        "name" : "description",
+        "type" : "text",
+        "properties" : {
+          "charset" : "UTF8",
+          "collation" : "NONE"
+        },
+        "validations" : [
+          {
+            "max_length" : 16777215
+          },
+          {
+            "required" : false
+          }
+        ]
+      }
+    ],
+    "collections" : [
+      {
+        "uuid" : "2dfafc89-4861-4b34-b1da-70a413bb2b1d",
+        "name" : "posts",
+        "fields" : [
+          {
+            "uuid" : "2d1ef4e9-e14b-4b6f-9621-1fead18fc3c4",
+            "name" : "id",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "f4bf0a80-6d0c-4f2c-abb0-c72a24dd1fae",
+            "name" : "title",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "8473f9c1-e629-496f-8aac-4803d5babb55",
+            "name" : "subtitle",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "2183c5c4-0bc4-4453-b14b-fd1e5c22c548",
+            "name" : "content",
+            "type" : "text",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "NONE"
+            },
+            "validations" : [
+              {
+                "max_length" : 16777215
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "507c3fb9-9932-4ecf-ac98-6c40dc1815dc",
+            "name" : "id_ref",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "dd8265d3-185d-44e6-883c-fa1c6bb3ed32",
+            "name" : "userId",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : false
+              },
+              {
+                "width" : 11
+              }
+            ]
+          }
+        ],
+        "collections" : [
+          {
+            "uuid" : "b5f2290c-b5c0-42ab-a1f2-021000fa6f6c",
+            "name" : "postTags",
+            "fields" : [
+              {
+                "uuid" : "8ddfae2b-44a2-4570-9e81-9274975d2dba",
+                "name" : "id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              },
+              {
+                "uuid" : "f0895dbf-0295-4f6c-9c4e-621d878eda73",
+                "name" : "tag",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              },
+              {
+                "uuid" : "7207d3a6-9dbf-4f2f-aba5-b5fffc212c34",
+                "name" : "id_ref",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "identifying" : ["id"],
+            "grouping_fields" : ["id_ref"]
+          }
+        ],
+        "identifying" : ["id"],
+        "grouping_fields" : ["id_ref"]
+      }
+    ],
+    "identifying" : ["id"]
+  },
+  {
+    "uuid" : "f7815d99-b618-4834-ab80-dcb6b977b01f",
+    "name" : "users",
+    "fields" : [
+      {
+        "uuid" : "be592998-5377-4c90-9f8b-0cbcd261bf9a",
+        "name" : "name",
+        "type" : "varchar",
+        "properties" : {
+          "charset" : "UTF8",
+          "collation" : "UCS_BINARY"
+        },
+        "validations" : [
+          {
+            "max_length" : 256
+          },
+          {
+            "required" : false
+          }
+        ]
+      },
+      {
+        "uuid" : "c04d8632-c417-466c-8446-1db8871e1ab7",
+        "name" : "_id",
+        "type" : "integer",
+        "validations" : [
+          {
+            "required" : true
+          },
+          {
+            "width" : 11
+          }
+        ]
+      }
+    ],
+    "collections" : [
+      {
+        "uuid" : "ba0bac5a-99b4-4fc5-9c3c-dc313d00e40a",
+        "name" : "account",
+        "fields" : [
+          {
+            "uuid" : "9292acca-bab0-4378-82fe-073937f15682",
+            "name" : "status",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "0cbf3e6b-8f68-4322-88e2-9caa78e47d6b",
+            "name" : "_users_id",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          }
+        ],
+        "grouping_fields" : ["_users_id"]
+      },
+      {
+        "uuid" : "0a23a46c-6f17-4f2c-90dd-3d6330c6a089",
+        "name" : "profiles",
+        "fields" : [
+          {
+            "uuid" : "eb9ad0ad-ff14-4780-bfdb-9d623131212d",
+            "name" : "id",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "d2970818-86e7-4561-a4c5-52f95d58bf7c",
+            "name" : "provider",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "cfd29c77-7b72-4c13-85cd-080fa6e6d7e0",
+            "name" : "displayName",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "dea7c200-f3b9-4723-954a-289d27c9854d",
+            "name" : "birthday",
+            "type" : "datetime",
+            "validations" : [
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "79daae0f-026e-4353-a142-3f5a77c40ece",
+            "name" : "gender",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          },
+          {
+            "uuid" : "261ebd40-8931-4618-8d11-4b40d7338ec6",
+            "name" : "_id",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "aee796e7-f509-4a8c-bf74-5fd3c4edac17",
+            "name" : "_users_id",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "da475524-d531-42ed-97d3-b1ebd042222e",
+            "name" : "identifier",
+            "type" : "varchar",
+            "properties" : {
+              "charset" : "UTF8",
+              "collation" : "UCS_BINARY"
+            },
+            "validations" : [
+              {
+                "max_length" : 256
+              },
+              {
+                "required" : false
+              }
+            ]
+          }
+        ],
+        "collections" : [
+          {
+            "uuid" : "6f1eb687-67ff-4c8f-9e63-fcb46749633c",
+            "name" : "accounts",
+            "fields" : [
+              {
+                "uuid" : "4b8f6026-bee1-41f0-8596-e96fa37f08bf",
+                "name" : "domain",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "78751464-2b44-49e3-bf86-820ddbdd56e0",
+                "name" : "userid",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "6270c08f-3709-4e5d-863b-1600cc9f912c",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "285935fb-0fe4-447e-bb38-fbb32be8b887",
+            "name" : "addresses",
+            "fields" : [
+              {
+                "uuid" : "ddf47aae-dc84-4707-82a3-d4949d179c47",
+                "name" : "type",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "e9ce9b96-40a1-4d27-a754-1a136df9660f",
+                "name" : "streetAddress",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "7ed7a774-b824-4ba2-ad8a-61b3408f9a05",
+                "name" : "locality",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "ca6a7247-b1b6-4ed7-94cc-dccd722f750e",
+                "name" : "region",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "b5f0d0b9-442d-4d60-8120-5889281466fa",
+                "name" : "postalCode",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "6cdf7dfd-1b9e-4887-9c8e-7e275f4e0f63",
+                "name" : "country",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "515d53c0-b773-4236-992a-3c5662be57cc",
+                "name" : "formatted",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "3637dbb1-9722-43c1-93ee-457ab1308542",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "82b611b8-ec2b-4ac2-89ef-46ad438d381d",
+            "name" : "emails",
+            "fields" : [
+              {
+                "uuid" : "372442a9-0e48-414a-b8da-3e7ce5946a47",
+                "name" : "value",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "172c7638-d33a-48e8-9cff-77d30a9ca0eb",
+                "name" : "type",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "c9ad2f01-0549-4aef-97a9-7b8b22dc146b",
+                "name" : "primary",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "cf6f0311-c7be-443b-867a-d94b7678c050",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "7c2330ad-9b1c-48c2-8641-447b95da9a33",
+            "name" : "ims",
+            "fields" : [
+              {
+                "uuid" : "e7701149-69c9-493c-a576-88042d7792eb",
+                "name" : "value",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "b2cd5c71-b9ae-4693-b126-466aa741797e",
+                "name" : "type",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "2e52b044-536b-454b-83e4-900ef7091e96",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "3648960a-74d1-4887-bff2-409b2608bd2f",
+            "name" : "name",
+            "fields" : [
+              {
+                "uuid" : "5ec05509-4f96-405e-a53b-1d95b3514f66",
+                "name" : "familyName",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "2f44d2c1-0532-4b7b-b07a-d8c7846af432",
+                "name" : "middleName",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "c731ab0e-6ac7-498c-ae2c-d5284cc4d0b1",
+                "name" : "givenName",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "ceba2655-1cc9-4a66-a785-c2fc978febcc",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "f465f307-f0be-4bae-a554-897b23a8889f",
+            "name" : "organizations",
+            "fields" : [
+              {
+                "uuid" : "c06865d6-f9e5-4a7a-9a1f-f6351004d214",
+                "name" : "name",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "c4ac78bb-a92b-4623-834c-7b5843d1aca8",
+                "name" : "title",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "0cd9e5a7-c652-4040-a9c8-fdc9e4a79f34",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "0595aa03-c57f-4690-aff4-0f005f97a3cc",
+            "name" : "phoneNumbers",
+            "fields" : [
+              {
+                "uuid" : "cab0d07c-32dc-481f-a2a2-5f7f3f35bca5",
+                "name" : "value",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "516ef9fd-a477-4d3c-915f-a4c3f174d94e",
+                "name" : "type",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "36144f15-c525-40be-941a-7cc9b6a69c63",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "cae77896-877c-4a84-8f24-0c23c8877146",
+            "name" : "photos",
+            "fields" : [
+              {
+                "uuid" : "263c6f95-b5ce-4901-ac0f-165b23229f62",
+                "name" : "value",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "60022853-555f-43ef-a894-e221d8584143",
+                "name" : "type",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "d14560a5-534b-4152-8862-b0b62f66ca64",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "de118816-5744-48f1-8ca3-a059ceb96f52",
+            "name" : "tags",
+            "fields" : [
+              {
+                "uuid" : "429c61b5-5ef4-4dda-bfee-ca8ca298d57e",
+                "name" : "value",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "6ad149db-edf0-40e5-9113-e4d7c1b7c6f5",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          },
+          {
+            "uuid" : "7bf6d7bc-0d95-4fa8-ba9c-2860c7aa7e2b",
+            "name" : "urls",
+            "fields" : [
+              {
+                "uuid" : "d12785a1-b93c-49eb-8da8-b2953dad021c",
+                "name" : "value",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "bb58f0b8-33ad-42c8-9ae5-87c73fde9321",
+                "name" : "type",
+                "type" : "varchar",
+                "properties" : {
+                  "charset" : "UTF8",
+                  "collation" : "UCS_BINARY"
+                },
+                "validations" : [
+                  {
+                    "max_length" : 256
+                  },
+                  {
+                    "required" : false
+                  }
+                ]
+              },
+              {
+                "uuid" : "8f20c5c8-7b03-4aea-ad82-2644d3c37d5f",
+                "name" : "_profile_id",
+                "type" : "integer",
+                "validations" : [
+                  {
+                    "required" : true
+                  },
+                  {
+                    "width" : 11
+                  }
+                ]
+              }
+            ],
+            "grouping_fields" : ["_profile_id"]
+          }
+        ],
+        "identifying" : ["_id"],
+        "grouping_fields" : ["_users_id"]
+      },
+      {
+        "uuid" : "ea3a2670-f783-49d4-8245-4862b675cb7c",
+        "name" : "userBlogs",
+        "fields" : [
+          {
+            "uuid" : "81723943-b40e-442a-9321-c3290fa7d5e7",
+            "name" : "id",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "83deafb6-2318-432e-ab35-5ca89f218647",
+            "name" : "blogId",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "4813e464-a6af-44c7-9529-797b4a054f7e",
+            "name" : "_id_ref",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          }
+        ],
+        "identifying" : ["id"],
+        "grouping_fields" : ["_id_ref"]
+      },
+      {
+        "uuid" : "dba1be7d-f62c-4c93-bbd8-d01a0d57db7b",
+        "name" : "userPosts",
+        "fields" : [
+          {
+            "uuid" : "4fd181e8-11f8-4635-8088-e1c083c8c9dc",
+            "name" : "id",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "d28efbf7-0117-4223-a183-0f65fdcde222",
+            "name" : "blogId",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          },
+          {
+            "uuid" : "14c4d055-0f77-473d-80f3-a527d15724f9",
+            "name" : "_id_ref",
+            "type" : "integer",
+            "validations" : [
+              {
+                "required" : true
+              },
+              {
+                "width" : 11
+              }
+            ]
+          }
+        ],
+        "identifying" : ["id"],
+        "grouping_fields" : ["_id_ref"]
+      }
+    ],
+    "identifying" : ["_id"]
+  }
+]}

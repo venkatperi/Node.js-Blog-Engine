@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entities>
+    <entity>
+        <uuid>bc87e443-a54b-45a7-a64e-9a2ec3f0ca3b</uuid>
+        <name>blogs</name>
+        <fields>
+            <uuid>69aa7f79-a22f-4f0e-a4ab-2a057d7d3748</uuid>
+            <name>id</name>
+            <type>integer</type>
+            <validations>
+                <required>true</required>
+            </validations>
+            <validations>
+                <width>11</width>
+            </validations>
+        </fields>
+        <fields>
+            <uuid>2ed907ba-929f-444b-995d-a6d8a79cc3ca</uuid>
+            <name>title</name>
+            <type>integer</type>
+            <validations>
+                <required>false</required>
+            </validations>
+            <validations>
+                <width>11</width>
+            </validations>
+        </fields>
+        <identifying>id</identifying>
+    </entity>
+</entities>
+

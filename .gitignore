@@ -1,5 +1,6 @@
 #compiled css
 resources/stylesheets/style.css
+*.log
 
 #node modules
 node_modules

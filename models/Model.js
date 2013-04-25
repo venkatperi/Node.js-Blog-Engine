@@ -49,11 +49,12 @@ function valueAtKey( obj, key, val ) {
       x = idx;
     }
 
-    if ( typeof v[x] === 'undefined' && setting ) {
-//      if ( !setting ) {
-//        throw new Error( 'no property found at ' + kk.join( '.' ) );
-//      }
-      v[x] = val || undefined;
+    if ( setting ) {
+      var old = v[x];
+      v[x] = val;
+      if ( typeof obj.emit === 'function' ) {
+        obj.emit( "propertyChanged", key, old, val )
+      }
     }
     v = v[x];
   } );

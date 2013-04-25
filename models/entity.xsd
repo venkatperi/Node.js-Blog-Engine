@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="propertiesType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="charset"/>
+            <xs:element type="xs:string" name="collation"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="idTypeList">
+        <xs:sequence>
+            <xs:element type="idType" name="identify" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="groupingList">
+        <xs:sequence>
+            <xs:element type="idType" name="identify" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="collectionsType">
+        <xs:sequence>
+            <xs:element type="uuidType" name="uuid" minOccurs="1" maxOccurs="1"/>
+            <xs:element type="idType" name="name" minOccurs="1" maxOccurs="1"/>
+            <xs:element type="fieldsType" name="fields" maxOccurs="unbounded" minOccurs="1"/>
+            <xs:element type="collectionsType" name="collections" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="idTypeList" name="identifying" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="grouping_fields" type="groupingList" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="fieldsType">
+        <xs:sequence>
+            <xs:element type="uuidType" name="uuid"/>
+            <xs:element type="idType" name="name"/>
+            <xs:element name="type">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="bigint"/>
+                        <xs:enumeration value="boolean"/>
+                        <xs:enumeration value="date"/>
+                        <xs:enumeration value="datetime"/>
+                        <xs:enumeration value="decimal"/>
+                        <xs:enumeration value="double"/>
+                        <xs:enumeration value="integer"/>
+                        <xs:enumeration value="varchar"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="propertiesType" name="properties" minOccurs="0"/>
+            <xs:element type="validationsType" name="validations" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="validationsType">
+        <xs:sequence>
+            <xs:element name="required" minOccurs="0" maxOccurs="1" type="xs:boolean"/>
+            <xs:element type="xs:int" name="width" minOccurs="0" maxOccurs="1"/>
+            <xs:element type="xs:int" name="max_length" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="entitiesList">
+        <xs:sequence>
+            <xs:element type="entityType" name="entity" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="uuidType">
+        <xs:restriction base="xs:string">
+            <xs:length value="36" fixed="true"/>
+            <xs:pattern
+                    value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[8-9a-bA-B][0-9a-fA-F]{3}-[0-9a-fA-F]{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="idType">
+        <xs:restriction base="xs:NCName"/>
+    </xs:simpleType>
+    <xs:complexType name="entityType">
+        <xs:sequence>
+            <xs:element name="uuid" type="uuidType">
+            </xs:element>
+            <xs:element name="name">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="blogs"/>
+                        <xs:enumeration value="users"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="fieldsType" name="fields" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="collectionsType" name="collections" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="identifying">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="id"/>
+                        <xs:enumeration value="_id"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="entities" type="entitiesList"/>
+
+</xs:schema>
