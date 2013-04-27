@@ -16,10 +16,10 @@ var Q = require( 'q' );
 var ObjectSet = function ( context, type, name ) {
   EventEmitter.call( this );
   this.options = options || {};
+  this.items = [];
   this.context = context;
   this.name = name;
   this.type = type;
-
 };
 
 util.inherits( ObjectSet, EventEmitter );
@@ -34,29 +34,26 @@ p.attach = function ( object ) {
 p.createObject = function ( object ) {
 };
 
-p.deleteObject = function(object){
+p.deleteObject = function ( object ) {
 };
 
-p.distinct = function(){};
+p.distinct = function () {};
 
-p.except = function(other){}
+p.except = function ( other ) {}
 
-p.execute = function(mergeOption){};
+p.execute = function ( mergeOption ) {};
 
-p.execute = function(){};
-p.include = function(){};
-p.intersect= function(){};
-p.orderBy= function(){};
-p.ofType= function(){};
-p.select= function(){};
-p.skip= function(){};
-p.top= function(){};
-p.union= function(){};
-p.unionAll= function(){};
-p.where= function(){};
-
-
-
+p.execute = function () {};
+p.include = function () {};
+p.intersect = function () {};
+p.orderBy = function () {};
+p.ofType = function () {};
+p.select = function () {};
+p.skip = function () {};
+p.top = function () {};
+p.union = function () {};
+p.unionAll = function () {};
+p.where = function () {};
 
 module.exports = ObjectSet;
 

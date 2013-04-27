@@ -2,7 +2,6 @@ var EventEmitter = require( 'events' ).EventEmitter;
 var util = require( 'util' );
 var Q = require( 'q' );
 
-
 var ObjectContext = function ( options ) {
   EventEmitter.call( this );
   this.options = options || {};
@@ -18,6 +17,7 @@ var p = ObjectContext.prototype;
  * unchanged or detached.
  */
 p.acceptAllChanges = function () {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -26,6 +26,7 @@ p.acceptAllChanges = function () {
  * @param {object} object
  */
 p.addObject = function ( entitySet, object ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -35,6 +36,7 @@ p.addObject = function ( entitySet, object ) {
  * @param object
  */
 p.createEntityKey = function ( entitySet, object ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -42,6 +44,7 @@ p.createEntityKey = function ( entitySet, object ) {
  * @param {string} type - Type of object to be returned.
  */
 p.createObject = function ( type ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -50,6 +53,7 @@ p.createObject = function ( type ) {
  * @param {string} [name] entity set name
  */
 p.createObjectSet = function ( type, name ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -57,6 +61,7 @@ p.createObjectSet = function ( type, name ) {
  * @param entity
  */
 p.deleteObject = function ( entity ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -64,6 +69,7 @@ p.deleteObject = function ( entity ) {
  * @param {object} entity - the entity to detach
  */
 p.detach = function ( entity ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -71,6 +77,7 @@ p.detach = function ( entity ) {
  * @param key
  */
 p.getObjectByKey = function ( key ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
@@ -79,12 +86,14 @@ p.getObjectByKey = function ( key ) {
  * @param items
  */
 p.refresh = function ( refreshMode, items ) {
+  throw new Error( "abstract method called" );
 };
 
 /**
  * Persists all updates to the data source and resets change tracking in the object context.
  */
 p.saveChanges = function () {
+  throw new Error( "abstract method called" );
 };
 
 
